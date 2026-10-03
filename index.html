@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Raj — Resume | Systems & AI Engineer</title>
+  <meta name="description" content="Resume of Abhishek Raj - Pre-final year B.Tech at NIT Delhi specializing in Autonomous Multi-Agent Systems, High-Throughput Backends, and AI Automation.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0f172a; color: #f8fafc; overflow: hidden; }
+    .header {
+      height: 56px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 10;
+    }
+    .brand { font-size: 16px; font-weight: 600; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #0369a1; color: #e0f2fe; }
+    .actions { display: flex; gap: 12px; align-items: center; }
+    .btn {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary { background: #2563eb; color: #ffffff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary { background: #1e293b; color: #cbd5e1; border: 1px solid #475569; }
+    .btn-secondary:hover { background: #334155; color: #ffffff; }
+    .viewer-container {
+      width: 100%;
+      height: calc(100% - 56px);
+      background: #1e293b;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span>Abhishek Raj</span>
+      <span class="badge">NIT Delhi</span>
+    </div>
+    <div class="actions">
+      <a href="https://github.com/abhi-shek2004" target="_blank" class="btn btn-secondary">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhishek-raj-nitd/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+      <a href="resume.pdf" download="Abhishek_Raj_Resume.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </header>
+  <main class="viewer-container">
+    <iframe src="resume.pdf#toolbar=1&navpanes=0&scrollbar=1" title="Abhishek Raj Resume">
+      <p style="padding: 20px; color: white;">Your browser does not support inline PDFs. <a href="resume.pdf" style="color: #38bdf8;">Click here to view/download the resume</a>.</p>
+    </iframe>
+  </main>
+</body>
+</html>
