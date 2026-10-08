@@ -2,71 +2,316 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abhishek Raj — Resume & Portfolio | AI & Systems Engineer</title>
-  <meta name="description" content="Abhishek Raj - Pre-final year B.Tech at NIT Delhi specializing in Autonomous Multi-Agent Systems, High-Throughput Backends, and AI Automation.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+  <title>Abhishek Raj — Resume | Systems & AI Engineer</title>
+  <meta name="description" content="Resume of Abhishek Raj — Pre-final year B.Tech at NIT Delhi specializing in Autonomous Multi-Agent Systems, High-Throughput Backends, and Applied AI.">
+  
+  <!-- OpenGraph / Social Sharing Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://abhi-shek2004.github.io/">
+  <meta property="og:title" content="Abhishek Raj — Resume (NIT Delhi)">
+  <meta property="og:description" content="Pre-final year B.Tech at NIT Delhi | Multi-Agent Systems, FastAPI, LangGraph, Playwright, High-Scale Backends.">
+
+  <!-- PDF.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0f172a; color: #f8fafc; overflow: hidden; }
+    
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body, html {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fixed Modern Header */
     .header {
-      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #334155;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 16px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      z-index: 10;
+      gap: 10px;
     }
-    .brand { font-size: 15px; font-weight: 600; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
-    .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #0369a1; color: #e0f2fe; }
-    .actions { display: flex; gap: 8px; align-items: center; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+
+    .brand-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .btn {
       text-decoration: none;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
+      padding: 7px 14px;
+      border-radius: 7px;
+      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      cursor: pointer;
     }
-    .btn-primary { background: #2563eb; color: #ffffff; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .btn-secondary { background: #1e293b; color: #cbd5e1; border: 1px solid #475569; }
-    .btn-secondary:hover { background: #334155; color: #ffffff; }
-    .viewer-container {
-      width: 100%;
-      height: calc(100% - 56px);
-      background: #1e293b;
+
+    .btn-download {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3);
     }
-    iframe {
+
+    .btn-download:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: #cbd5e1;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* Main Resume Viewer Area */
+    .viewer-wrapper {
       width: 100%;
-      height: 100%;
-      border: none;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 12px 40px 12px;
+    }
+
+    /* Canvas styling for high-res crisp PDF */
+    .pdf-page-container {
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #ffffff;
+      max-width: 100%;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      height: auto !important;
+    }
+
+    /* Loading indicator */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 16px;
+      color: var(--text-muted);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(56, 189, 248, 0.15);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile Quick Bar for Easy Tap */
+    @media (max-width: 640px) {
+      .header {
+        padding: 8px 12px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        flex: 1;
+        justify-content: center;
+      }
+      .btn-download {
+        flex: 1.4;
+      }
+      .viewer-wrapper {
+        padding: 10px 4px 30px 4px;
+      }
+      .pdf-page-container {
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Sticky Header with Immediate Actions -->
   <header class="header">
     <div class="brand">
-      <span>Abhishek Raj</span>
-      <span class="badge">NIT Delhi</span>
+      <span class="brand-name">Abhishek Raj</span>
+      <span class="brand-badge">NIT Delhi</span>
     </div>
     <div class="actions">
-      <a href="https://github.com/abhi-shek2004" target="_blank" class="btn btn-secondary">GitHub</a>
-      <a href="https://www.linkedin.com/in/abhishek-raj-b661ab290/" target="_blank" class="btn btn-secondary">LinkedIn</a>
-      <a href="https://leetcode.com/u/Abhishek_nitd786/" target="_blank" class="btn btn-secondary">LeetCode</a>
+      <a href="resume.pdf" download="Abhishek_Raj_Resume.pdf" class="btn btn-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download PDF
+      </a>
+      <a href="https://github.com/abhi-shek2004" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhishek-raj-b661ab290/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
       <a href="mailto:abhishekrajofficial7@gmail.com" class="btn btn-secondary">Email</a>
-      <a href="resume.pdf" download="Abhishek_Raj_Resume.pdf" class="btn btn-primary">Download PDF</a>
     </div>
   </header>
-  <main class="viewer-container">
-    <iframe src="resume.pdf#toolbar=1&navpanes=0&scrollbar=1" title="Abhishek Raj Resume">
-      <p style="padding: 20px; color: white;">Your browser does not support inline PDFs. <a href="resume.pdf" style="color: #38bdf8;">Click here to view/download the resume</a>.</p>
-    </iframe>
+
+  <!-- Responsive PDF Container -->
+  <main class="viewer-wrapper" id="viewer-container">
+    <div class="loading-state" id="loading-spinner">
+      <div class="spinner"></div>
+      <p>Rendering Resume...</p>
+    </div>
   </main>
+
+  <script>
+    // Configure PDF.js Worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const pdfUrl = 'resume.pdf';
+    const container = document.getElementById('viewer-container');
+    const loading = document.getElementById('loading-spinner');
+
+    async function loadResume() {
+      try {
+        const loadingTask = pdfjsLib.getDocument({
+          url: pdfUrl,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        });
+
+        const pdf = await loadingTask.promise;
+        if (loading) loading.remove();
+
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          
+          // Calculate high-resolution scale based on screen width
+          const screenWidth = Math.min(window.innerWidth - 16, 920);
+          const unscaledViewport = page.getViewport({ scale: 1 });
+          const cssScale = screenWidth / unscaledViewport.width;
+          
+          // Sharp rendering for Retina/Mobile displays
+          const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+          const renderScale = cssScale * dpr;
+          const viewport = page.getViewport({ scale: renderScale });
+
+          // Container for this page
+          const pageBox = document.createElement('div');
+          pageBox.className = 'pdf-page-container';
+          pageBox.style.width = screenWidth + 'px';
+
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d', { alpha: false });
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
+          canvas.style.width = screenWidth + 'px';
+          canvas.style.height = Math.floor(viewport.height / dpr) + 'px';
+
+          pageBox.appendChild(canvas);
+          container.appendChild(pageBox);
+
+          const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+          };
+          await page.render(renderContext).promise;
+        }
+      } catch (err) {
+        console.error('Error rendering PDF:', err);
+        if (loading) {
+          loading.innerHTML = `
+            <div style="text-align: center; max-width: 400px; padding: 20px;">
+              <p style="color: #f87171; font-weight: 600; margin-bottom: 12px;">Could not display inline viewer</p>
+              <a href="resume.pdf" download="Abhishek_Raj_Resume.pdf" class="btn btn-download" style="display: inline-block;">Download Direct PDF</a>
+            </div>
+          `;
+        }
+      }
+    }
+
+    // Load when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadResume);
+    } else {
+      loadResume();
+    }
+
+    // Re-render smoothly on orientation change (mobile flip)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const pages = container.querySelectorAll('.pdf-page-container');
+        if (pages.length > 0) {
+          pages.forEach(p => p.remove());
+          loadResume();
+        }
+      }, 250);
+    });
+  </script>
 </body>
 </html>
